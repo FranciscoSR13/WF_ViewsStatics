@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframes de Prototipo de App de Eventos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos base para simular un wireframe limpio y centrado */
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centrado vertical para una mejor visualización */
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .wireframe-screen {
+            width: 100%;
+            max-width: 400px;
+            height: 90vh; /* Ajuste para una visualización más grande */
+            border: 8px solid #333;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            position: relative;
+            display: flex; /* Usamos flexbox para organizar el contenido interno */
+            flex-direction: column;
+        }
+        .screen-content {
+            flex-grow: 1; /* Permite que el contenido de la pantalla ocupe el espacio restante */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+            padding-bottom: 70px; /* Espacio para la barra de navegación inferior si aplica */
+        }
+        .placeholder {
+            background-color: #e5e7eb;
+            border-radius: 4px;
+        }
+        .header-bar {
+            height: 56px;
+            background-color: #3b82f6;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            font-weight: bold;
+            flex-shrink: 0; /* Evita que el encabezado se encoja */
+        }
+
+        /* --- Estilos de la Navegación Superior (Mejorada) --- */
+        .controls-container {
+            width: 100%;
+            background: linear-gradient(to right, #3b82f6, #4f46e5); /* Degradado azul/índigo */
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 20;
+        }
+        .controls-container button {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.2);
+            font-size: 0.75rem; /* text-xs */
+            padding: 0.25rem 0.5rem; /* px-2 py-1 */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: all 0.2s ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+        }
+        .controls-container button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05); /* Efecto sutil de zoom */
+        }
+        .controls-container button.active-button {
+            background-color: white;
+            color: #3b82f6;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="wireframe-screen" id="app-container">
+
+        <nav class="controls-container">
+            <button onclick="showScreen('login', this)" class="active-button">1. Inicio/Reg.</button>
+            <button onclick="showScreen('dashboard', this)">2. Dashboard</button>
+            <button onclick="showScreen('create_event', this)">3. Crear Evento</button>
+            <button onclick="showScreen('voting', this)">4. Votación</button>
+            <button onclick="showScreen('calendar', this)">5. Calendario</button>
+            <button onclick="showScreen('chat', this)">6. Chat</button>
+            <button onclick="showScreen('profile', this)">7. Perfil</button>
+        </nav>
+        <section id="login" class="screen-content flex flex-col items-center justify-center p-6 text-center">
+            <div class="w-24 h-24 bg-blue-500 rounded-xl mb-4 flex items-center justify-center text-white text-3xl font-bold">L</div>
+            <h1 class="text-3xl font-extrabold text-gray-800 mb-8">Planifícame</h1>
+            
+            <div class="w-full max-w-xs mb-6">
+                <div class="h-10 placeholder w-full mb-3 flex items-center justify-center text-gray-600 border rounded-lg">Email o Usuario</div>
+                <div class="h-10 placeholder w-full mb-6 flex items-center justify-center text-gray-600 border rounded-lg">Contraseña</div>
+            </div>
+
+            <button class="w-full max-w-xs py-3 bg-blue-500 text-white font-bold rounded-lg shadow-md mb-3 hover:bg-blue-600">
+                Iniciar Sesión
+            </button>
+            
+            <div class="text-sm text-gray-500 my-4">O</div>
+
+            <button class="w-full max-w-xs py-3 border-2 border-blue-500 text-blue-500 font-bold rounded-lg hover:bg-blue-50">
+                Registrarse
+            </button>
+        </section>
+
+
+        <section id="dashboard" class="screen-content flex flex-col hidden">
+            <div class="header-bar">
+                Dashboard
+            </div>
+            
+            <div class="p-4 flex-grow">
+                <h2 class="text-xl font-semibold mb-4 text-gray-700">Próximos Eventos</h2>
+
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-200 mb-4">
+                    <div class="text-sm text-blue-600 font-medium">15 MAR - 19:00h</div>
+                    <div class="text-lg font-bold">Noche de Juegos de Mesa 🎲</div>
+                    <div class="text-gray-500 text-sm">Organiza: @UsuarioA</div>
+                    <div class="flex justify-between items-center mt-2">
+                        <div class="text-xs placeholder w-24 h-4">4 Opciones en Votación</div>
+                        <div class="text-sm text-green-500 font-semibold">Confirmado</div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-200 mb-4">
+                    <div class="text-sm text-blue-600 font-medium">22 MAR - 14:00h</div>
+                    <div class="text-lg font-bold">Día de Picnic en el Parque 🌳</div>
+                    <div class="text-gray-500 text-sm">Organiza: @UsuarioB</div>
+                    <div class="flex justify-between items-center mt-2">
+                        <div class="text-xs text-red-500 font-medium">Faltan 2 votos</div>
+                        <div class="text-sm text-yellow-500 font-semibold">Pendiente</div>
+                    </div>
+                </div>
+
+                <div class="h-16 placeholder w-full mb-3"></div>
+                <div class="h-16 placeholder w-full mb-3"></div>
+                <div class="h-16 placeholder w-full mb-3"></div>
+            </div>
+
+            <button class="absolute right-6 bottom-20 w-14 h-14 bg-pink-500 text-white text-3xl rounded-full shadow-lg hover:bg-pink-600 flex items-center justify-center"
+                onclick="showScreen('create_event')" title="Crear Nuevo Evento">
+                ➕
+            </button>
+
+            <nav class="fixed bottom-0 w-full max-w-[400px] h-16 bg-white border-t border-gray-200 flex justify-around items-center z-10">
+                <button onclick="showScreen('dashboard')" class="flex flex-col items-center text-blue-500 text-xs"><span>📅</span> Eventos</button>
+                <button onclick="showScreen('voting')" class="flex flex-col items-center text-gray-500 text-xs"><span>🗳️</span> Votaciones</button>
+                <button onclick="showScreen('calendar')" class="flex flex-col items-center text-gray-500 text-xs"><span>🗓️</span> Calendario</button>
+                <button onclick="showScreen('chat')" class="flex flex-col items-center text-gray-500 text-xs"><span>💬</span> Chat</button>
+                <button onclick="showScreen('profile')" class="flex flex-col items-center text-gray-500 text-xs"><span>👤</span> Perfil</button>
+            </nav>
+        </section>
+
+
+        <section id="create_event" class="screen-content flex flex-col hidden">
+            <div class="header-bar">
+                Crear Nuevo Evento
+            </div>
+            
+            <div class="p-4 flex-grow">
+                <h2 class="text-lg font-semibold mb-4 text-gray-700">Detalles del Evento</h2>
+
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del evento</label>
+                <input type="text" placeholder="Ej: Cena de Cumpleaños" class="h-10 placeholder w-full mb-3 border p-2 rounded-lg">
+
+                <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+                <textarea rows="3" placeholder="Detalles, notas, etc." class="placeholder w-full mb-3 border p-2 rounded-lg"></textarea>
+
+                <label class="block text-sm font-medium text-gray-700 mb-1">Fecha / Hora</label>
+                <input type="text" placeholder="20/Dic/2024 18:00" class="h-10 placeholder w-full mb-3 border p-2 rounded-lg">
+
+                <label class="block text-sm font-medium text-gray-700 mb-1">Lugar</label>
+                <input type="text" placeholder="Dirección o Punto de Encuentro" class="h-10 placeholder w-full mb-6 border p-2 rounded-lg">
+
+                <h2 class="text-lg font-semibold mb-3 text-gray-700">Opciones de Actividades (Votación)</h2>
+                <div class="flex gap-2 mb-3">
+                    <input type="text" placeholder="Opción 1: Cine" class="h-10 placeholder w-full border p-2 rounded-lg">
+                    <button class="w-10 h-10 bg-gray-200 rounded-lg text-gray-600 flex items-center justify-center">-</button>
+                </div>
+                <div class="flex gap-2 mb-3">
+                    <input type="text" placeholder="Opción 2: Boliche" class="h-10 placeholder w-full border p-2 rounded-lg">
+                    <button class="w-10 h-10 bg-gray-200 rounded-lg text-gray-600 flex items-center justify-center">-</button>
+                </div>
+                <button class="w-full py-2 border-dashed border-2 border-gray-400 text-gray-500 rounded-lg mb-6 hover:bg-gray-100">
+                    + Añadir Opción
+                </button>
+            </div>
+            
+            <div class="p-4 border-t border-gray-200">
+                <button class="w-full py-3 bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600">
+                    Crear Evento
+                </button>
+            </div>
+        </section>
+
+
+        <section id="voting" class="screen-content flex flex-col hidden">
+            <div class="header-bar">
+                Votación: ¿Qué hacemos?
+            </div>
+            
+            <div class="p-4 flex-grow">
+                <div class="text-sm text-gray-500 mb-4">Evento: Noche de Juegos de Mesa 🎲 (15 MAR)</div>
+                <h2 class="text-xl font-bold mb-4">Elige la actividad principal</h2>
+
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-200 mb-4">
+                    <div class="flex justify-between items-start">
+                        <div class="text-lg font-bold">1. Cine 🎬</div>
+                        <button class="w-8 h-8 rounded-full border-4 border-blue-500 bg-blue-500"></button> </div>
+                    <div class="text-sm text-gray-500 mb-2">Ver la nueva película de acción.</div>
+                    <div class="text-sm font-medium mt-2">Votos: 8 de 12 (67%)</div>
+                    <div class="w-full h-2 bg-gray-200 rounded-full mt-1">
+                        <div class="h-2 bg-blue-500 rounded-full" style="width: 67%;"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-200 mb-4">
+                    <div class="flex justify-between items-start">
+                        <div class="text-lg font-bold">2. Picnic 🌳</div>
+                        <button class="w-8 h-8 rounded-full border-4 border-gray-300"></button> </div>
+                    <div class="text-sm text-gray-500 mb-2">Traer comida y disfrutar del aire libre.</div>
+                    <div class="text-sm font-medium mt-2">Votos: 2 de 12 (17%)</div>
+                    <div class="w-full h-2 bg-gray-200 rounded-full mt-1">
+                        <div class="h-2 bg-blue-500 rounded-full" style="width: 17%;"></div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-md border border-gray-200 mb-4">
+                    <div class="flex justify-between items-start">
+                        <div class="text-lg font-bold">3. Boliche 🎳</div>
+                        <button class="w-8 h-8 rounded-full border-4 border-gray-300"></button>
+                    </div>
+                    <div class="text-sm text-gray-500 mb-2">Noche de pinos y strikes.</div>
+                    <div class="text-sm font-medium mt-2">Votos: 2 de 12 (17%)</div>
+                    <div class="w-full h-2 bg-gray-200 rounded-full mt-1">
+                        <div class="h-2 bg-blue-500 rounded-full" style="width: 17%;"></div>
+                    </div>
+                </div>
+
+                <button class="w-full py-3 bg-blue-500 text-white font-bold rounded-lg shadow-md mt-4 hover:bg-blue-600">
+                    Confirmar Voto
+                </button>
+
+            </div>
+        </section>
+
+
+        <section id="calendar" class="screen-content flex flex-col hidden">
+            <div class="header-bar">
+                Calendario de Eventos
+            </div>
+            
+            <div class="p-4 flex flex-col items-center">
+                <div class="flex justify-between items-center w-full mb-4">
+                    <button class="text-xl text-blue-500 font-bold"> &lt; </button>
+                    <h2 class="text-xl font-bold">Marzo 2025</h2>
+                    <button class="text-xl text-blue-500 font-bold"> &gt; </button>
+                </div>
+
+                <div class="grid grid-cols-7 gap-1 w-full text-center text-sm">
+                    <div class="text-gray-500 font-medium">D</div>
+                    <div class="text-gray-500 font-medium">L</div>
+                    <div class="text-gray-500 font-medium">M</div>
+                    <div class="text-gray-500 font-medium">M</div>
+                    <div class="text-gray-500 font-medium">J</div>
+                    <div class="text-gray-500 font-medium">V</div>
+                    <div class="text-gray-500 font-medium">S</div>
+
+                    <div class="text-gray-300 p-2">23</div>
+                    <div class="text-gray-300 p-2">24</div>
+                    <div class="text-gray-300 p-2">25</div>
+                    <div class="text-gray-300 p-2">26</div>
+                    <div class="text-gray-300 p-2">27</div>
+                    <div class="text-gray-300 p-2">28</div>
+                    <div class="text-gray-300 p-2">1</div>
+                    
+                    <div class="p-2">2</div>
+                    <div class="p-2">3</div>
+                    <div class="p-2">4</div>
+                    <div class="p-2">5</div>
+                    <div class="p-2">6</div>
+                    <div class="p-2 font-bold text-white bg-red-400 rounded-full aspect-square flex items-center justify-center">7</div> <div class="p-2">8</div>
+
+                    <div class="p-2">9</div>
+                    <div class="p-2">10</div>
+                    <div class="p-2">11</div>
+                    <div class="p-2">12</div>
+                    <div class="p-2 font-bold text-white bg-blue-500 rounded-full aspect-square flex items-center justify-center">13</div> <div class="p-2">14</div>
+                    <div class="p-2 font-bold text-white bg-red-400 rounded-full aspect-square flex items-center justify-center">15</div> <div class="p-2">16</div>
+                    <div class="p-2">17</div>
+                    <div class="p-2">18</div>
+                    <div class="p-2">19</div>
+                    <div class="p-2">20</div>
+                    <div class="p-2">21</div>
+                    <div class="p-2 font-bold text-white bg-red-400 rounded-full aspect-square flex items-center justify-center">22</div> <div class="p-2">23</div>
+                    <div class="p-2">24</div>
+                    <div class="p-2">25</div>
+                    <div class="p-2">26</div>
+                    <div class="p-2">27</div>
+                    <div class="p-2">28</div>
+                    <div class="p-2">29</div>
+                    <div class="p-2">30</div>
+                    <div class="p-2">31</div>
+                </div>
+
+                <div class="w-full mt-6 p-3 bg-gray-50 rounded-lg shadow-inner border border-gray-200">
+                    <h3 class="font-semibold text-lg mb-2 text-gray-700">Eventos para el 13 de Marzo</h3>
+                    <div class="h-8 placeholder w-full bg-blue-100 mb-2 p-1 text-sm text-blue-800 flex items-center rounded-lg">
+                        Evento: Lanzamiento de Cohetes 🚀 (10:00h)
+                    </div>
+                    <div class="h-8 placeholder w-full bg-red-100 mb-2 p-1 text-sm text-red-800 flex items-center rounded-lg">
+                        Evento: Clase de Yoga 🧘‍♀️ (18:00h)
+                    </div>
+                    <div class="text-sm text-gray-500 mt-2">Haz clic para ver más detalles.</div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="chat" class="screen-content flex flex-col hidden">
+            <div class="header-bar">
+                💬 Chat: Picnic en el Parque
+            </div>
+            
+            <div class="flex-grow p-4 space-y-4">
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-gray-500 rounded-full mr-3 flex-shrink-0"></div>
+                    <div class="max-w-xs">
+                        <div class="text-xs text-gray-500 mb-1">Jane Doe | 10:30 AM</div>
+                        <div class="bg-gray-200 p-3 rounded-tr-xl rounded-b-xl text-gray-800">
+                            ¿Alguien trae los sándwiches? Yo llevo los refrescos.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end items-start">
+                    <div class="max-w-xs">
+                        <div class="text-xs text-gray-500 mb-1 text-right">Yo | 10:35 AM</div>
+                        <div class="bg-blue-500 text-white p-3 rounded-tl-xl rounded-b-xl">
+                            ¡Perfecto! Yo confirmo mi asistencia. ¿Alguien más votó por la opción del Boliche? 🎳
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 bg-blue-500 rounded-full ml-3 flex-shrink-0"></div>
+                </div>
+
+                <div class="h-10 placeholder w-2/3 ml-11"></div>
+                <div class="flex justify-end"><div class="h-10 placeholder w-3/4 mr-11 bg-blue-100"></div></div>
+                <div class="h-10 placeholder w-2/3 ml-11"></div>
+            </div>
+
+            <div class="p-3 border-t border-gray-200 bg-white">
+                <div class="flex items-center gap-2">
+                    <button class="text-2xl text-gray-500">📎</button>
+                    <input type="text" placeholder="Escribe un mensaje..." class="flex-grow h-10 border-none bg-gray-100 p-3 rounded-full focus:outline-none">
+                    <button class="text-2xl text-gray-500">😊</button>
+                    <button class="w-10 h-10 bg-blue-500 text-white rounded-full text-lg flex items-center justify-center">
+                        &gt;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="profile" class="screen-content flex flex-col hidden">
+            <div class="header-bar">
+                Perfil de Usuario
+            </div>
+            
+            <div class="p-4 flex flex-col items-center">
+                <div class="w-24 h-24 bg-purple-500 rounded-full border-4 border-white shadow-lg mb-4 flex items-center justify-center text-white text-4xl font-bold">A</div>
+                <h1 class="text-2xl font-bold text-gray-800">Andrea M.</h1>
+                <p class="text-gray-500 mb-6">andrea.m@mail.com</p>
+
+                <div class="w-full">
+                    <h2 class="text-xl font-semibold mb-3 text-gray-700">Mi Historial</h2>
+                    
+                    <div class="bg-gray-100 p-3 rounded-lg mb-3 border border-gray-200">
+                        <div class="font-medium text-gray-800">Organizador: Juegos de Mesa 🎲</div>
+                        <div class="text-sm text-gray-500">15 de Marzo, 2025 | 12 Participantes</div>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-3 rounded-lg mb-3 border border-gray-200">
+                        <div class="font-medium text-gray-800">Participante: Viaje a la Playa 🏖️</div>
+                        <div class="text-sm text-gray-500">2 de Febrero, 2025 | Confirmado</div>
+                    </div>
+
+                    <div class="h-12 placeholder w-full mb-3"></div>
+                    <div class="h-12 placeholder w-full mb-3"></div>
+                    
+                </div>
+                
+                <button class="w-full mt-6 py-3 border-2 border-red-500 text-red-500 font-bold rounded-lg hover:bg-red-50">
+                    Cerrar Sesión
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Función para manejar la navegación entre pantallas
+        // Se inicializa en la pantalla de login.
+        const screens = document.querySelectorAll('.screen-content');
+        const navButtons = document.querySelectorAll('.controls-container button');
+        let currentScreenId = 'login'; 
+
+        function showScreen(screenId, clickedButton) {
+            // Oculta todas las pantallas
+            screens.forEach(screen => {
+                screen.classList.add('hidden');
+            });
+
+            // Remueve la clase activa de todos los botones
+            navButtons.forEach(btn => {
+                btn.classList.remove('active-button');
+            });
+
+            // Muestra la pantalla solicitada
+            const screen = document.getElementById(screenId);
+            if (screen) {
+                screen.classList.remove('hidden');
+                currentScreenId = screenId;
+                // Vuelve el scroll al inicio de la pantalla
+                screen.scrollTop = 0;
+            }
+
+            // Agrega la clase activa al botón que fue clickeado
+            if (clickedButton) {
+                clickedButton.classList.add('active-button');
+            }
+        }
+
+        // Inicializar mostrando la primera pantalla
+        window.onload = () => {
+            showScreen(currentScreenId, document.querySelector('.controls-container button'));
+        };
+    </script>
+
+</body>
+</html>
